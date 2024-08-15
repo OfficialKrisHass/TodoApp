@@ -1,0 +1,43 @@
+.card {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 20px;
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    min-width: 50vw;
+    padding: 20px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+.row input {
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    outline: none;
+    width: 100%;
+    margin-right: 5px;
+    padding-left: 10px;
+    font-size: 1.8rem;
+}
+.row button {
+    background-color: rgba(255, 255, 255, 0.32);
+    color: rgba(0, 0, 0, 1);
+    outline: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 18px;
+    border-left: 18px solid rgba(252, 85, 3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.2);
+    width: 150px;
+    padding: 5px;
+    font-size: 2rem;
+}
+.row button:hover {
+    border-left: 18px solid rgba(30, 150, 225);
+}
