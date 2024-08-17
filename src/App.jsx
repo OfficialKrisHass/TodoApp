@@ -11,6 +11,8 @@ function App() {
                 <button>Add</button>
             </div>
             <Todo/>
+            <Todo/>
+            <Todo/>
         </div>
     )
 
