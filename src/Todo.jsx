@@ -1,11 +1,11 @@
 import "./Todo.css"
 
-function Todo() {
+function Todo({ title }) {
 
     return (
         <div className="todo">
             <input type="checkbox" name="finished"></input>
-            <label for="finished">Task name bla bla</label>
+            <label for="finished">{title}</label>
         </div>
     )
 

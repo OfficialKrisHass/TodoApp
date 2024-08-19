@@ -6,6 +6,7 @@
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     min-width: 50vw;
+    max-height: 75vh;
     padding: 20px;
     color: rgb(0, 0, 0);
     text-align: center;
