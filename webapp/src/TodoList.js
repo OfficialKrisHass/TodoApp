@@ -1,4 +1,5 @@
-import Todo from "./Todo.jsx"
+import Todo from "./Todo";
+
 import "./TodoList.css"
 
 function TodoList({ todos }) {
@@ -6,10 +7,10 @@ function TodoList({ todos }) {
     return (
         <div className="list">
         {todos.map(todo =>
-            <Todo title={todo} />
+            <Todo todo={todo}/>
         )}
         </div>
-    );
+    )
 
 }
 
