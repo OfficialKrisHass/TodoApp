@@ -2,11 +2,7 @@ import express from "express";
 
 const todosRouter = express.Router();
 
-const todos = [
-    { title: "Test 1", finished: false },
-    { title: "Test 2", finished: true },
-    { title: "Test 3", finished: false }
-]
+const todos = [];
 
 todosRouter.get("/", (req, res) => {
 
@@ -16,8 +12,22 @@ todosRouter.get("/", (req, res) => {
 });
 todosRouter.post("/", (req, res) => {
 
-    todos.push(req.body);
-    res.json(req.body);
+    const id = todos.length;
+    todos.push({
+        ...req.body,
+        id: id 
+    });
+
+    res.json(todos[id]);
+
+});
+
+todosRouter.post("/:id", (req, res) => {
+    
+    const id = req.params.id;
+    todos[id] = req.body;
+
+    res.json(todos[id]);
 
 });
 
