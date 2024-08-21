@@ -17,9 +17,9 @@ class Database {
 
     }
 
-    async runQuery(query) {
+    async runQuery(query, params) {
 
-        const [rows] = await this.pool.query(query);
+        const [rows] = await this.pool.query(query, params);
         return rows;
 
     }

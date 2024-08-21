@@ -30,7 +30,7 @@ todosRouter.post("/", (req, res) => {
 
     }
 
-    database.runQuery(`INSERT INTO todos(title) VALUES ("${req.body.title}")`)
+    database.runQuery(`INSERT INTO todos(title) VALUES (?)`, [req.body.title])
     .then(res => database.runQuery(`SELECT * FROM todos WHERE id=${res.insertId}`))
     .then(res => respond(res))
     .catch(error => console.error(error));
@@ -46,7 +46,7 @@ todosRouter.delete("/:id", (req, res) => {
 
     }
 
-    database.runQuery(`DELETE FROM todos WHERE id=${req.params.id}`)
+    database.runQuery(`DELETE FROM todos WHERE id=?`, [req.params.id])
     .then(() => respond(200, "Success"))
     .catch(error => {
 
@@ -66,7 +66,7 @@ todosRouter.post("/finish/:id", (req, res) => {
 
     }
 
-    database.runQuery(`UPDATE todos SET finished=${req.body.finished} WHERE id=${req.body.id}`)
+    database.runQuery(`UPDATE todos SET finished=? WHERE id=?`, [req.body.finished, req.body.id])
     .then(res => respond(200, "Success"))
     .catch(error => {
 
