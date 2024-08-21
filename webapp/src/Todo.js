@@ -4,13 +4,13 @@ function Todo({ todo }) {
 
     const onChange = (event) => {
 
-        fetch(`/api/todos/${todo.id}`, {
+        fetch(`/api/todos/finish/${todo.id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                ...todo,
+                id: todo.id,
                 finished: event.target.checked
             })
         }).then(() => todo.finished = event.target.checked);

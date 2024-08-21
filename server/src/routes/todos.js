@@ -1,34 +1,55 @@
 import express from "express";
 
+import getDatabase from "../database.js";
+
 const todosRouter = express.Router();
 
-const todos = [];
+const database = getDatabase();
 
 todosRouter.get("/", (req, res) => {
 
-    res.status(200);
-    res.json(todos);
+    function sendTodos(todos) {
+
+        res.status(200);
+        res.json(todos);
+
+    }
+
+    database.runQuery("SELECT * FROM todos").then(res => sendTodos(res));
+
 
 });
 todosRouter.post("/", (req, res) => {
 
-    const id = todos.length;
-    todos.push({
-        ...req.body,
-        id: id 
-    });
+    function respond(queryRes) {
 
-    res.json(todos[id]);
+        if (queryRes.length === 0) throw new Error("Couldn't get newly added todo from database");
+
+        res.status(200);
+        res.json(queryRes[0]);
+
+    }
+
+    database.runQuery(`INSERT INTO todos(title) VALUES ("${req.body.title}")`)
+    .then(res => database.runQuery(`SELECT * FROM todos WHERE id=${res.insertId}`))
+    .then(res => respond(res))
+    .catch(error => console.error(error));
 
 });
 
-todosRouter.post("/:id", (req, res) => {
+todosRouter.post("/finish/:id", (req, res) => {
+
+    function respond(status, msg) {
+
+        res.statusCode = status;
+        res.json({ message: msg });
+
+    }
+
+    database.runQuery(`UPDATE todos SET finished=${req.body.finished} WHERE id=${req.body.id}`)
+    .then(res => respond(200, "Success"))
+    .catch(error => respond(500, error));
     
-    const id = req.params.id;
-    todos[id] = req.body;
-
-    res.json(todos[id]);
-
 });
 
 export default todosRouter;

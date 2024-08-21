@@ -4,8 +4,6 @@ import TodoList from './TodoList';
 
 import './App.css';
 
-//const todos = ["Todo List", "Scrolling UI", "List scroll", "This is just to", "fill out and scroll", "Finishing Todos", "Loading Todos", "bla bla", "bla #2"];
-
 function App() {
 
     const [todos, setTodos] = useState([{}]);
@@ -32,7 +30,7 @@ function App() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ title: newTodo, finished: false })
+            body: JSON.stringify({ title: newTodo })
 
         }).then(response => response.json())
         .then(data => {
