@@ -8,14 +8,14 @@ const database = getDatabase();
 
 todosRouter.get("/", (req, res) => {
 
-    function sendTodos(todos) {
+    function respond(todos) {
 
         res.status(200);
         res.json(todos);
 
     }
 
-    database.runQuery("SELECT * FROM todos").then(res => sendTodos(res));
+    database.runQuery("SELECT * FROM todos").then(res => respond(res));
 
 
 });
@@ -37,6 +37,26 @@ todosRouter.post("/", (req, res) => {
 
 });
 
+todosRouter.delete("/:id", (req, res) => {
+
+    function respond(status, msg) {
+
+        res.statusCode = status;
+        res.json({ message: msg });
+
+    }
+
+    database.runQuery(`DELETE FROM todos WHERE id=${req.params.id}`)
+    .then(() => respond(200, "Success"))
+    .catch(error => {
+
+        console.error(error);
+        respond(500, error);
+
+    });
+
+});
+
 todosRouter.post("/finish/:id", (req, res) => {
 
     function respond(status, msg) {
@@ -48,7 +68,12 @@ todosRouter.post("/finish/:id", (req, res) => {
 
     database.runQuery(`UPDATE todos SET finished=${req.body.finished} WHERE id=${req.body.id}`)
     .then(res => respond(200, "Success"))
-    .catch(error => respond(500, error));
+    .catch(error => {
+
+        console.error(error);
+        respond(500, error);
+
+    });
     
 });
 

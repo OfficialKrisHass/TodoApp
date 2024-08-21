@@ -54,7 +54,7 @@ function App() {
                 </input>
                 <button onClick={AddTodo}>Add</button>
             </div>
-            <TodoList todos={todos}/>
+            <TodoList todos={todos} setTodos={setTodos}/>
         </div>
     );
 

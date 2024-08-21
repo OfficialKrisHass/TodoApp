@@ -1,6 +1,6 @@
 import "./Todo.css"
 
-function Todo({ todo }) {
+function Todo({ todo, deleteTodo }) {
 
     const onChange = (event) => {
 
@@ -21,6 +21,9 @@ function Todo({ todo }) {
         <div key={todo.id} className="todo">
             <input type="checkbox" name="finished" defaultChecked={todo.finished} onChange={onChange}/>
             <label htmlFor="finished">{todo.title}</label>
+            <button onClick={() => deleteTodo(todo)}>
+                <i className="fa fa-close"/>
+            </button>
         </div>
     )
 

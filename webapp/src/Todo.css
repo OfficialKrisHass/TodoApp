@@ -3,6 +3,7 @@
     display: flex;
     align-items: center;
 }
+
 .todo input {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -28,7 +29,20 @@
 .todo input:checked::before {
     transform: scale(1);
 }
+
 .todo label {
     font-size: 1.8rem;
     cursor: pointer;
+}
+
+.todo button {
+    background-color: transparent;
+    border: none;
+    margin-left: auto;
+    text-align: center;
+    font-size: 1.9rem;
+    cursor: pointer;
+}
+.todo button:hover {
+    color: rgb(30, 43, 50);
 }
